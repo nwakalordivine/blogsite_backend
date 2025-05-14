@@ -1,0 +1,5 @@
+django
+django_rest_framework
+djangorestframework-simplejwt
+environs
+psycopg2-binary
