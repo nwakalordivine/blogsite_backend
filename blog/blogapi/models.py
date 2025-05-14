@@ -1,7 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-from django.contrib.auth.models import User
-
+from django.contrib.auth.models import User, AbstractUser
 
 class BlogPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -35,7 +34,6 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=20, choices=[('Guest', 'Guest'), ('Author', 'Author')], default='Guest')
     avatar = CloudinaryField('image', blank=True, null=True)
     bio = models.TextField(default="This user has not written a bio yet.")
-    role = models.CharField(max_length=20, choices=[('Guest', 'Guest'), ('Author', 'Author')], default='Guest')
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
@@ -49,12 +47,27 @@ class Notification(models.Model):
     def __str__(self):
         return self.message[:20]
 
-
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     blog_post = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Like by {self.user} on {self.blog_post}"
-    
 
+
+class CustomUser(AbstractUser):
+    # Add unique related_name attributes to avoid clashes
+    groups = models.ManyToManyField(
+        'auth.Group',
+        related_name='customuser_set',  # Unique related_name
+        blank=True,
+        help_text='The groups this user belongs to.',
+        verbose_name='groups',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        related_name='customuser_set',  # Unique related_name
+        blank=True,
+        help_text='Specific permissions for this user.',
+        verbose_name='user permissions',
+    )

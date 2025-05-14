@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'storages',
     'django_filters',
-    'rest_framework_simplejwt.token_blacklist'
+    'rest_framework_simplejwt.token_blacklist',
+    'drf_yasg',  # Swagger
 ]
 
 MIDDLEWARE = [
@@ -114,7 +115,8 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 
 

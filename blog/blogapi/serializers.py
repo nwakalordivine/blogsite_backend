@@ -46,7 +46,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
     likes_count = serializers.SerializerMethodField()
     liked_by_user = serializers.SerializerMethodField()
     is_bookmarked = serializers.SerializerMethodField()
-    author_username = serializers.CharField(source='author.username', read_only=True)
+    author = serializers.CharField(source='author.username', read_only=True)
 
     class Meta:
         model = BlogPost
@@ -71,7 +71,7 @@ class CommentSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
     like_count = serializers.SerializerMethodField()
     liked_by_user = serializers.SerializerMethodField()
-    author_username = serializers.CharField(source='author.username', read_only=True)
+    author = serializers.CharField(source='author.username', read_only=True)
 
     class Meta:
         model = Comment
@@ -141,7 +141,7 @@ class NotificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Notification
-        fields = ['id', 'recipient', 'message', 'is_read', 'timestamp']
+        fields = ['id', 'recipient', 'message', 'is_read', 'timestamp', 'author_username']
 
 # ================= BOOKMARKS =================
 class BookmarkSerializer(serializers.ModelSerializer):
@@ -183,7 +183,7 @@ class PostStatisticsSerializer(serializers.Serializer):
 
 class UserRoleSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = UserProfile
         fields = ['role']
 
     def update(self, instance, validated_data):
@@ -194,4 +194,4 @@ class UserRoleSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'role', 'is_active']
+        fields = ['id', 'username', 'email', 'is_active']

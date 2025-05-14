@@ -9,6 +9,8 @@ from .views import (
 )
 from rest_framework_simplejwt.views import TokenRefreshView
 
+
+
 urlpatterns = [
     path('auth/register/', RegisterView.as_view(), name='register'),
     path('auth/login/', CustomTokenObtainPairView.as_view(), name='login'),  # Login with email
