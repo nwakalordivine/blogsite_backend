@@ -24,11 +24,11 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="BlogSite API",
+      title="Blogsite API",
       default_version='v1',
       description="API documentation for your blog platform",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="divinenwakalor31@gmail.com"),
+      contact=openapi.Contact(email="contact@blogsite.local"),
       license=openapi.License(name="BSD License"),
    ),
    public=True,
