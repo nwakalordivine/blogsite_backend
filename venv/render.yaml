@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: blog-backend
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn blog.wsgi:application
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: SECRET_KEY
+        value: 'django-insecure-cbb!b^#y*cm&o$@_n%criyohi#!2*#4&qn@85)alem&s19&d^g'
+      - key: DB_NAME
+        value: 'blogsite_6cfc'
+      - key: DB_USER
+        value: 'blogsite_6cfc_user'
+      - key: DB_PASSWORD
+        value: 'NFz2Pgn3EZSdWTdiXZ4nojYm2NQx6kG6'
+      - key: DB_HOST
+        value: 'dpg-d0hoj7k9c44c739nri7g-a.frankfurt-postgres.render.com'
+      - key: DB_PORT
+        value: '5432'
+      - key: CLOUDINARY_CLOUD_NAME
+        value: 'dfcon4lff'
+      - key: CLOUDINARY_API_KEY
+        value: '649471191955829'
+      - key: CLOUDINARY_API_SECRET
+        value: 'dXgjR1v3s5Rus9ouEvHJaiOujPM'
+
+
