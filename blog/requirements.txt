@@ -4,3 +4,4 @@ djangorestframework-simplejwt
 environs
 psycopg2-binary
 gunicorn
+cloudinary
