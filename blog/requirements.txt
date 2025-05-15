@@ -25,3 +25,4 @@ typing_extensions
 uritemplate
 urllib3
 whitenoise
+django-filter
